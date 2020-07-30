@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="Quản lý sinh viên"
-        android:textColor="#9CDA53"
+        android:textColor="#050505"
         android:textSize="30dp"
         android:textStyle="bold"
 
@@ -21,8 +21,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:id="@+id/btn_AddStudent"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/bg_btn"
@@ -37,8 +39,10 @@
         ></Button>
 
     <Button
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:id="@+id/btn_SortByName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_btn"
         android:padding="5dp"
@@ -50,8 +54,10 @@
         app:layout_constraintTop_toTopOf="@id/btn_SortByASCAge"></Button>
 
     <Button
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:id="@+id/btn_SortByASCAge"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/bg_btn"
@@ -65,8 +71,10 @@
 
 
     <Button
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:id="@+id/btn_FindByName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/bg_btn"
@@ -79,8 +87,10 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_SortByASCAge"></Button>
 
     <Button
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:id="@+id/btn_FindByAge"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_btn"
         android:padding="5dp"

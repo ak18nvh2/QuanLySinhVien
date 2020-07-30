@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    android:background="@drawable/bg_activity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/tv_TitleOfCustomDialogConfirm"
+    android:text="Bạn có chắc chắc lưu?"
+    android:textStyle="bold"
+    android:textSize="16dp"
+    android:layout_marginTop="10dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    ></TextView>
+    <Button
+        android:textAllCaps="false"
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_AcceptDiaLogConFirm"
+        android:text="Đồng ý"
+        android:background="@drawable/bg_btn"
+        android:textColor="#ffff"
+        app:layout_constraintTop_toBottomOf="@id/tv_TitleOfCustomDialogConfirm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/btn_CancelDialogConfirm"
+        ></Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_CancelDialogConfirm"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_AcceptDiaLogConFirm"
+        android:textColor="#ffff"
+        android:background="@drawable/bg_btn"
+        android:text="Huỷ"
+        app:layout_constraintRight_toLeftOf="@id/btn_AcceptDiaLogConFirm"
+        ></Button>
+</androidx.constraintlayout.widget.ConstraintLayout>
