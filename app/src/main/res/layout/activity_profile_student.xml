@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".ProfileStudentActivity">
+
+    <TextView
+        android:id="@+id/tv_Title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Thông tin sinh viên"
+        android:textAllCaps="true"
+        android:textColor="#E81515"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <ImageView
+        android:id="@+id/img_AvatarProfile"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/onepiece"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_Title2"></ImageView>
+
+    <Button
+        android:id="@+id/btn_SelectAvatar"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_btn"
+        android:text="Chọn ảnh"
+        android:textAllCaps="false"
+        android:textColor="#ffff"
+        app:layout_constraintLeft_toLeftOf="@id/img_AvatarProfile"
+        app:layout_constraintRight_toRightOf="@id/img_AvatarProfile"
+        app:layout_constraintTop_toBottomOf="@id/img_AvatarProfile"></Button>
+
+    <TextView
+        android:id="@+id/tv_Name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Họ tên:"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/edt_InPutName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edt_InPutName"></TextView>
+
+    <EditText
+        android:id="@+id/edt_InPutName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:text="Nguyễn Trung Minh Hiếu"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toRightOf="@id/tv_Name2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_SelectAvatar"></EditText>
+
+    <TextView
+
+        android:id="@+id/tv_DateOfBirth2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ngày sinh:"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/edt_InPutDateOfBirth"
+        app:layout_constraintLeft_toLeftOf="@id/tv_Name2"
+        app:layout_constraintTop_toTopOf="@id/edt_InPutDateOfBirth"></TextView>
+
+    <EditText
+        android:id="@+id/edt_InPutDateOfBirth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toRightOf="@id/tv_DateOfBirth2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_InPutName"></EditText>
+
+    <ImageView
+        android:id="@+id/img_SelectDate"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginRight="5dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/calendar"
+        app:layout_constraintBottom_toBottomOf="@id/edt_InPutDateOfBirth"
+        app:layout_constraintRight_toRightOf="@id/edt_InPutDateOfBirth"
+        app:layout_constraintTop_toTopOf="@id/edt_InPutDateOfBirth"></ImageView>
+
+    <TextView
+        android:id="@+id/tv_Sex2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Giới tính:"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/tv_Name2"
+        app:layout_constraintTop_toBottomOf="@id/edt_InPutDateOfBirth"></TextView>
+
+    <RadioGroup
+        android:id="@+id/rb_grSex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toRightOf="@id/tv_Sex2"
+        app:layout_constraintTop_toTopOf="@id/tv_Sex2">
+
+        <RadioButton
+            android:id="@+id/rb_Nam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:checked="true"
+            android:text="Nam"
+            android:textSize="18dp"></RadioButton>
+
+        <RadioButton
+            android:id="@+id/rb_Nu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Nữ"
+            android:textSize="18dp"></RadioButton>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_Address2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Địa chỉ:"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/edt_InPutAddress"
+        app:layout_constraintLeft_toLeftOf="@id/tv_DateOfBirth2"
+        app:layout_constraintTop_toTopOf="@id/edt_InPutAddress"></TextView>
+
+    <EditText
+        android:id="@+id/edt_InPutAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toRightOf="@id/tv_Address2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rb_grSex"></EditText>
+
+    <TextView
+        android:id="@+id/tv_Majors2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chuyên ngành: "
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/edt_InPutMajors"
+        app:layout_constraintLeft_toLeftOf="@id/tv_Name2"
+        app:layout_constraintTop_toTopOf="@id/edt_InPutMajors"></TextView>
+
+    <EditText
+        android:id="@+id/edt_InPutMajors"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toRightOf="@id/tv_Majors2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_InPutAddress"></EditText>
+
+    <Button
+        android:id="@+id/btn_SaveInfor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn"
+        android:text="Lưu"
+        android:textColor="#ffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="3:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_Back"
+        app:layout_constraintTop_toBottomOf="@id/edt_InPutMajors"></Button>
+
+    <Button
+        android:id="@+id/btn_Back"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn"
+        android:text="Quay lại"
+        android:textColor="#ffff"
+        app:layout_constraintDimensionRatio="3:1"
+        app:layout_constraintLeft_toRightOf="@id/btn_SaveInfor"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_SaveInfor"></Button>
+</androidx.constraintlayout.widget.ConstraintLayout>

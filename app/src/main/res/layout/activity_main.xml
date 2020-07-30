@@ -4,15 +4,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".HomeActivity">
 
     <TextView
+        android:id="@+id/tv_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="30dp"
+        android:text="Quản lý sinh viên"
+        android:textColor="#9CDA53"
+        android:textSize="30dp"
+        android:textStyle="bold"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btn_AddStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn"
+        android:padding="5dp"
+        android:text="Thêm sinh viên"
+        android:textAllCaps="false"
+        android:textColor="#ffff"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_Title"
+
+        ></Button>
+
+    <Button
+        android:id="@+id/btn_SortByName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn"
+        android:padding="5dp"
+        android:text="Sắp xếp theo tên"
+        android:textAllCaps="false"
+        android:textColor="#ffff"
+        app:layout_constraintLeft_toRightOf="@id/btn_SortByASCAge"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_SortByASCAge"></Button>
+
+    <Button
+        android:id="@+id/btn_SortByASCAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_btn"
+        android:padding="5dp"
+        android:text="Sắp tăng dần theo tuổi"
+        android:textAllCaps="false"
+        android:textColor="#ffff"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/btn_SortByName"
+        app:layout_constraintTop_toBottomOf="@id/btn_AddStudent"></Button>
+
+
+    <Button
+        android:id="@+id/btn_FindByName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_btn"
+        android:padding="5dp"
+        android:text="Tìm kiếm theo tên"
+        android:textAllCaps="false"
+        android:textColor="#ffff"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_FindByAge"
+        app:layout_constraintTop_toBottomOf="@+id/btn_SortByASCAge"></Button>
+
+    <Button
+        android:id="@+id/btn_FindByAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn"
+        android:padding="5dp"
+        android:text="Tìm kiếm theo tuổi"
+        android:textAllCaps="false"
+        android:textColor="#ffff"
+        app:layout_constraintLeft_toRightOf="@id/btn_FindByName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_FindByName"></Button>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/rv_ListStudents"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_FindByAge"
+
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
