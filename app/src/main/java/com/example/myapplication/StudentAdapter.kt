@@ -1,20 +1,13 @@
 package com.example.myapplication
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
-import kotlinx.android.synthetic.main.activity_profile_student.*
-import kotlinx.android.synthetic.main.dialog_comfirm.*
-import java.lang.Exception
 
 class StudentAdapter(var mContext: Context,var iAdapterWithActivity: IAdapterWithActivity) : RecyclerView.Adapter<StudentAdapter.ViewHolder>() {
     private var list = ArrayList<Student>()
@@ -53,12 +46,16 @@ class StudentAdapter(var mContext: Context,var iAdapterWithActivity: IAdapterWit
         else holder.sex.text = "| Giới tính: Nữ"
 
         holder.itemView.setOnLongClickListener {
-            iAdapterWithActivity.doSomeThing(list[position])
+            iAdapterWithActivity.doSomeThingOnLongClick(list[position])
             return@setOnLongClickListener true
+        }
+        holder.avt.setOnClickListener(){
+            iAdapterWithActivity.doSomeThingOnClickAvatar(list[position])
         }
 
     }
     interface IAdapterWithActivity{
-        fun doSomeThing(student: Student)
+        fun doSomeThingOnLongClick(student: Student)
+        fun doSomeThingOnClickAvatar(student: Student)
     }
 }

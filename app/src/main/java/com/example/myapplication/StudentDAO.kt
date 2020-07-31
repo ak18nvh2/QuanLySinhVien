@@ -13,5 +13,27 @@ interface StudentDAO {
     fun getAllStudents(): List<Student>
 
     @Query("delete from Student where id = :id")
-    fun deleteStudentById(id : Int)
+    fun deleteStudentById(id: Int)
+
+    @Query("update Student set LinkAvatar = :avt, FullName =:name, FirstName =:firstName, DateOfBirth= :dateOfBirth, YearOfBirth=:yearOfBirth,  Sex =:sex, Address=:address, Majors=:majors where id=:id")
+    fun upDateInfor(
+        id: Int,
+        avt: String?,
+        name: String,
+        dateOfBirth: String,
+        sex: Int,
+        address: String,
+        majors: String,
+        yearOfBirth : Int,
+        firstName : String
+    )
+
+    @Query("select * from Student order by FirstName ASC")
+    fun sortByNameASC(): List<Student>
+
+    @Query("select * from Student order by YearOfBirth DESC")
+    fun sortByAgeASC(): List<Student>
+
+    @Query("select * from Student where FirstName=:firstName")
+    fun findByFirstName(firstName: String) : List<Student>
 }
