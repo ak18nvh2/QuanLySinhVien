@@ -24,8 +24,8 @@ interface StudentDAO {
         sex: Int,
         address: String,
         majors: String,
-        yearOfBirth : Int,
-        firstName : String
+        yearOfBirth: Int,
+        firstName: String
     )
 
     @Query("select * from Student order by FirstName ASC")
@@ -34,6 +34,9 @@ interface StudentDAO {
     @Query("select * from Student order by YearOfBirth DESC")
     fun sortByAgeASC(): List<Student>
 
-    @Query("select * from Student where FirstName=:firstName")
-    fun findByFirstName(firstName: String) : List<Student>
+    @Query("select * from Student where FirstName like :firstName")
+    fun findByFirstName(firstName: String): List<Student>
+
+    @Query("select * from Student where YearOfBirth=:yearOfBirth")
+    fun findByAge(yearOfBirth: Int): List<Student>
 }

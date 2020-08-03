@@ -12,8 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_profile_student.*
 import kotlinx.android.synthetic.main.dialog_comfirm.*
 import kotlinx.android.synthetic.main.dialog_search.*
+import java.lang.NumberFormatException
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 
 
@@ -25,6 +29,15 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener,
         val STUDENT = "STUDENT"
     }
 
+    private fun loadData() {
+        //Thread {
+            list =
+                AppDB.DataBase.getDataBase(this).studentDAO().getAllStudents() as ArrayList<Student>
+            this.runOnUiThread(java.lang.Runnable {
+                mAdapter?.setList(list)
+            })
+      //  }.start()
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,25 +46,21 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener,
         mAdapter = StudentAdapter(this, this)
         var rv_ListStudent: RecyclerView = findViewById(R.id.rv_ListStudents)
         rv_ListStudent.layoutManager = LinearLayoutManager(this)
-//        val current = LocalDateTime.now()
-//        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-//        val formatted = current.format(formatter)
         rv_ListStudent.adapter = mAdapter
-        Thread {
-            list =
-                AppDB.DataBase.getDataBase(this).studentDAO().getAllStudents() as ArrayList<Student>
-            this.runOnUiThread(java.lang.Runnable {
-                mAdapter?.setList(list)
-            })
-        }.start()
+        loadData()
         btn_AddStudent.setOnClickListener(this)
         btn_SortByName.setOnClickListener(this)
         btn_SortByASCAge.setOnClickListener(this)
         btn_FindByName.setOnClickListener(this)
+        btn_FindByAge.setOnClickListener(this)
+        tv_Title.setOnClickListener(this)
     }
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onClick(v: View?) {
         when (v) {
+            tv_Title -> loadData()
             btn_FindByName -> {
                 val dialog = MaterialDialog(this)
                     .noAutoDismiss()
@@ -62,9 +71,11 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener,
                     dialog.dismiss()
                 }
                 dialog.btn_AcceptDiaLogSearch.setOnClickListener() {
-                    Thread{
+                    var firstName = "%" + dialog.edt_InPutSearch.text.toString() + "%"
+                    Thread {
                         HomeActivity.list.clear()
-                        HomeActivity.list = AppDB.DataBase.getDataBase(this).studentDAO().findByFirstName(edt_InPutSearch.text.toString()) as ArrayList<Student>
+                        HomeActivity.list = AppDB.DataBase.getDataBase(this).studentDAO()
+                            .findByFirstName(firstName) as ArrayList<Student>
                         runOnUiThread(java.lang.Runnable {
                             mAdapter?.setList(list)
                         })
@@ -74,9 +85,10 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener,
                 dialog.show()
             }
             btn_SortByASCAge -> {
-                Thread{
+                Thread {
                     HomeActivity.list.clear()
-                    HomeActivity.list = AppDB.DataBase.getDataBase(this).studentDAO().sortByAgeASC() as ArrayList<Student>
+                    HomeActivity.list = AppDB.DataBase.getDataBase(this).studentDAO()
+                        .sortByAgeASC() as ArrayList<Student>
                     runOnUiThread(java.lang.Runnable {
                         mAdapter?.setList(list)
                     })
@@ -87,13 +99,54 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener,
                 startActivity(intent)
             }
             btn_SortByName -> {
-                Thread{
+                Thread {
                     HomeActivity.list.clear()
-                    HomeActivity.list = AppDB.DataBase.getDataBase(this).studentDAO().sortByNameASC() as ArrayList<Student>
+                    HomeActivity.list = AppDB.DataBase.getDataBase(this).studentDAO()
+                        .sortByNameASC() as ArrayList<Student>
                     runOnUiThread(java.lang.Runnable {
                         mAdapter?.setList(list)
                     })
                 }.start()
+            }
+            btn_FindByAge -> {
+                val dialog = MaterialDialog(this)
+                    .noAutoDismiss()
+                    .customView(R.layout.dialog_search)
+
+                dialog.tv_TitleSearchDialog.text = "Nhập tuổi muốn tìm :"
+
+                dialog.btn_CancelDialogSearch.setOnClickListener() {
+                    dialog.dismiss()
+                }
+
+                dialog.btn_AcceptDiaLogSearch.setOnClickListener() {
+                    if (dialog.edt_InPutSearch.text.toString()[0] == '-') {
+                        Toast.makeText(this, "Nhập sai!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        try {
+
+                            var age = dialog.edt_InPutSearch.text.toString().toInt()
+                            val current = LocalDateTime.now()
+                            val formatter = DateTimeFormatter.ofPattern("yyyy")
+                            val formatted = current.format(formatter).toInt()
+                            var yearOfBirth = formatted - age
+                            Thread {
+                                HomeActivity.list.clear()
+                                HomeActivity.list = AppDB.DataBase.getDataBase(this).studentDAO()
+                                    .findByAge(yearOfBirth) as ArrayList<Student>
+                                runOnUiThread(java.lang.Runnable {
+                                    mAdapter?.setList(list)
+                                })
+                            }.start()
+                            dialog.dismiss()
+                        } catch (e: NumberFormatException) {
+                            Toast.makeText(this, "Nhập sai!", Toast.LENGTH_LONG).show()
+                        }
+                    }
+
+                }
+                dialog.show()
+
             }
         }
     }
@@ -103,7 +156,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener,
         val dialog = MaterialDialog(this)
             .noAutoDismiss()
             .customView(R.layout.dialog_comfirm)
-
         dialog.tv_TitleOfCustomDialogConfirm.setText("Bạn có chắc chắn xóa sinh viên này ?")
         dialog.btn_CancelDialogConfirm.setOnClickListener() {
             dialog.dismiss()

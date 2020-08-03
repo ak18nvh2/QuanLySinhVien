@@ -33,6 +33,7 @@ class ProfileStudentActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun init() {
+        edt_InPutDateOfBirth.isEnabled = false
         img_SelectDate.setOnClickListener(this)
         edt_InPutDateOfBirth.inputType = InputType.TYPE_NULL
         btn_SelectAvatar.setOnClickListener(this)
@@ -112,7 +113,7 @@ class ProfileStudentActivity : AppCompatActivity(), View.OnClickListener {
                     dialog.btn_AcceptDiaLogConFirm.setOnClickListener() {
                         this.student.name = edt_InPutName.text.toString()
                         var i=this.student.name.length - 1
-                        while (this.student.name[i] != ' '){
+                        while (this.student.name[i-1] != ' ' && i>0){
                             i--;
                         }
                         this.student.firstName = this.student.name.substring(i,this.student.name.length)
@@ -197,7 +198,7 @@ class ProfileStudentActivity : AppCompatActivity(), View.OnClickListener {
 
                         this.student.name = edt_InPutName.text.toString()
                         var i=this.student.name.length - 1
-                        while (this.student.name[i] != ' '){
+                        while (this.student.name[i-1] != ' ' && i>0){
                             i--;
                         }
                         this.student.firstName = this.student.name.substring(i,this.student.name.length)
